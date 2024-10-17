@@ -11,15 +11,15 @@ onload="renderMathInElement(document.body, {
 
 # Will we ever know if $\pi^{\pi^{\pi^{\pi}}}$ is an integer?
 
-I stumbled upon Matt Parker's incredible video: [Why π^π^π^π could be an integer](https://www.youtube.com/watch?v=BdHFLfv-ThQ), and it really piqued my interest. My initial thoughts were "Well that's just nonsese. Just calculate it to a few digits after the decimal place", which is what I guess everyone who saw that video thought. But this question is, in some sense, at the limit of what is feasible to compute, and I find that interesting. On the one hand, it's a simple arithimetic calculation, but on the other, it just as well may be that we will never be able to compute it.
+I stumbled upon Matt Parker's incredible video: [Why π^π^π^π could be an integer](https://www.youtube.com/watch?v=BdHFLfv-ThQ), and it really piqued my interest. My initial thoughts were, "Well, that's just nonsense. Just calculate it to a few digits after the decimal place", which is what I guess everyone who saw that video thought. But this question is, in some sense, at the limit of what is feasible to compute, and I find that interesting. On the one hand, it's a simple arithmetic calculation, but on the other, it just as well may be that we will never be able to compute it.
 
-After understanding that this may not be feasible, the interesting question then is, well, how many digits of $\pi$ do you need? And this is what I intend on answering in this page.
+After understanding that this may not be feasible, the interesting question then is, well, how many digits of $\pi$ do you need? And this is what I intend on answering on this page.
 
 First, let's start by denoting $\alpha \coloneqq \pi^{\pi^{\pi}}$. In order to know whether $\pi^{\pi^{\pi^{\pi}}}$ is an integer, we would like to calculate $\pi^\alpha$ to some degree of precision, where $\alpha \approx 10^{18}$ is a huge number.
 
-More generally, we want to calculate a value $a^b$ to some degree of percision. In our case, both numbers are irrational.
+More generally, we want to calculate a value $a^b$ to some degree of precision. In our case, both numbers are irrational.
 
-Say we only use the first $d$ digits (in decimal) of $b$. That is, instead of $b$, we are actually raising $a$ to the power of $\tilde{b} \coloneqq b-\varepsilon$, where $\varepsilon \approx 10^{-d}$. Always keep in mind that in our case $b$ is ridiculously large, and $\varepsilon$ is ridiculously tiny.
+Say we only use the first $d$ digits (in decimal) of $b$. That is, instead of $b$, we are actually raising $a$ to the power of $\tilde{b} \coloneqq b-\varepsilon$, where $\varepsilon \approx 10^{-d}$. Always keep in mind that in our case $b$ is ridiculously large and $\varepsilon$ is ridiculously tiny.
 
 Now, we want to know how far this is from the actual result. That is, we would like to bound the following expression:
 
@@ -27,12 +27,12 @@ Now, we want to know how far this is from the actual result. That is, we would l
     |a^b - a^{b - \varepsilon}| < E
 \\]
 
-We could choose $E$ to be something rea sonable, say, $E=10^{-2}$. That way, if we calculate $a^{b-\varepsilon}$, and see that it is not within a distace of $0.01$ of an integer, then we would know that $a^b$ (or $\pi^\alpha$, in our case) is not an integer either.
-If the calculated value is within range of an integer (which implies that we can't prove that $a^b$ is not an integer), then we can just choose $E$ to be smaller, but we will shortly see that this doesn't really matter anyway.
+We could choose $E$ to be something reasonable, say, $E=10^{-2}$. That way, if we calculate $a^{b-\varepsilon}$, and see that it is not within a distance of $0.01$ of an integer, then we would know that $a^b$ (or $\pi^\alpha$, in our case) is not an integer either.
+If the calculated value is within the range of an integer (which implies that we can't prove that $a^b$ is not an integer), then we can just choose $E$ to be smaller, but we will shortly see that this doesn't really matter anyway.
 
 The small caveat of this method is that we can only prove that $\pi^{\pi^{\pi^\pi}}$ is not an integer. That is, on the odd chance that this number actually **is** an integer, this method will not be able to prove it.
 
-Essentially, this method tries to bound $a^b$ inside an $\varepsilon$-ball that does not contain an integer. But, sadly, if $a^b$ is an integer, then **any** $\varepsilon$-ball aroundn it will always contain an integer - itself.
+Essentially, this method tries to bound $a^b$ inside an $\varepsilon$-ball that does not contain an integer. But, sadly, if $a^b$ is an integer, then **any** $\varepsilon$-ball around it will always contain an integer - itself.
 
 Anyways, let's start crunching away:
 
@@ -56,7 +56,7 @@ Anyways, let's start crunching away:
     - \varepsilon > \log_a(1- a^{-b}E)
 \\]
 
-Now, recall the taylor series expansion of $\log_a(1-x)$:
+Now, recall the Taylor series expansion of $\log_a(1-x)$:
 
 \\[
     \log_a(1-x) = -\sum_{n=1}^{\infty} \frac{x^n}{n\ln(a)}
@@ -92,7 +92,7 @@ Recalling that in our case $a$ is $\pi$ which is relatively small, and quoting t
 
 Notice that the first term (which is obviously the dominant) is just the number of digits in base 10 of $a^b$, which is interesting.
 
-So, to summarize, we discovered that in order for $a^{b-\varepsilon}$ to be within $10^{-\tilde{E}}$ of $a^b$, we need to take the $(b \log_{10}(a) + \tilde{E})$ most significat digits of $b$.
+So, to summarize, we discovered that in order for $a^{b-\varepsilon}$ to be within $10^{-\tilde{E}}$ of $a^b$, we need to take the $(b \log_{10}(a) + \tilde{E})$ most significant digits of $b$.
 
 The acute reader would notice that this was not what we originally set out to find. We wanted to know how many digits of $\pi$ we would need to calculate in order to determine if $\pi^{\pi^{\pi^{\pi}}}$ is an integer.
 
@@ -102,7 +102,7 @@ But knowing the first $d_\alpha$ is equivalent to calculating $\pi^{(\pi^{\pi})}
 
 $$d_{\pi^{\pi}} = \pi^\pi \log_{10}(\pi) + d_\alpha$$
 
-digits of $\pi^\pi$, which in turn, implies that we need approximatly:
+digits of $\pi^\pi$, which in turn, implies that we need approximatley:
 
 $$\pi \log_{10}(\pi) + \pi^\pi \log_{10}(\pi) + d_\alpha$$
 
@@ -111,7 +111,7 @@ And so, to summarize, in order to know $\pi^{\pi^{\pi^{\pi}}}$ within $\tilde{E}
 
 \\[\pi \log_{10}(\pi) + \pi^\pi \log_{10}(\pi) + \pi^{\pi^\pi} \log_{10}(\pi) + \tilde{E}\\]
 
-digits of $\pi$. Now, recall the fundamental theorem of physics, which state that $\pi^2 \approx 10$, and so, $\log_{10}(\pi) \approx \frac{1}{2}$.
+digits of $\pi$. Now, recall the fundamental theorem of physics, which states that $\pi^2 \approx 10$, and so, $\log_{10}(\pi) \approx \frac{1}{2}$.
 
 And finally, we have that we need about:
 
@@ -119,7 +119,7 @@ And finally, we have that we need about:
     \frac{1}{2} (\pi + \pi^\pi + \pi^{\pi^\pi}) + \tilde{E} \approx \pi^{\pi^\pi} \approx 5 \cdot 10^{17}
 \\]
 
-digits of $\pi$ to know whether $\pi^{\pi^{\pi^{\pi}}}$ is an integer. The current record for digits of $\pi$ is about $2\cdot 10^{14}$, which means we need approximatly $2500$ **times** more digits.
+digits of $\pi$ to know whether $\pi^{\pi^{\pi^{\pi}}}$ is an integer. The current record for digits of $\pi$ is about $2\cdot 10^{14}$, which means we need approximately $2500$ **times** more digits.
 
 This number is so ridiculously large that even if we could store every digit in a bit, it would take approximately 500 petabytes to store that number.
 And now, for the million dollar question - will we ever know if $\pi^{\pi^{\pi^{\pi}}}$ is an integer?
@@ -134,7 +134,7 @@ The acute reader would notice that this is not accurate, as what we calculate im
 
 ```python
 import mpmath
-mpmath.mp.dps=1024 # Choose a stupidly large percision
+mpmath.mp.dps=1024 # Choose a stupidly large precision
 
 def pi_n(n):
     return mpmath.mpf(mpmath.nstr(mpmath.mp.pi,n))
