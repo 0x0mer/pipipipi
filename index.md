@@ -1,3 +1,7 @@
+---
+layout: default
+title: ""
+---
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css">
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" defer
@@ -135,6 +139,8 @@ But hey, cheer up, we still got a cool formula that we can try out for $\pi^{\pi
 
 The formula says that in order to know $\pi^{\pi^\pi}$ within $\tilde{E}$ digits, we need to know $\frac{1}{2} (\pi + \pi^\pi ) + \tilde{E} \approx 20 + \tilde{E}$ digits of $\pi$.
 The acute reader would notice that this is not accurate, as what we calculate implies that we are within a distance of $10^{-\tilde{E}}$ of the correct number. This **probably** means that we have $\tilde{E}$ correct digits, but definitely does not imply it for certain. For example, think of the number $0.999\dots$
+
+Some code:
 
 ```python
 import mpmath
