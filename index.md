@@ -17,7 +17,7 @@ After understanding that this may not be feasible, the interesting question then
 
 First, let's start by denoting $\alpha \coloneqq \pi^{\pi^{\pi}}$. In order to know whether $\pi^{\pi^{\pi^{\pi}}}$ is an integer, we would like to calculate $\pi^\alpha$ to some degree of precision, where $\alpha \approx 10^{18}$ is a huge number.
 
-More generally, we want to calculate a value $a^b$ to some degree of precision. In our case, both numbers are irrational.
+Let's try to generalize a tiny bit. Let's look at two positive real values $a,b\in \mathbb{R}_+$ and try to calculate $a^b$ to some degree of precision. Recall that in our case both may be irrational ($a=\pi$ is for sure, and $b=\pi^{\pi^{\pi}}$ may be as well).
 
 Say we only use the first $d$ digits (in decimal) of $b$. That is, instead of $b$, we are actually raising $a$ to the power of $\tilde{b} \coloneqq b-\varepsilon$, where $\varepsilon \approx 10^{-d}$. Always keep in mind that in our case $b$ is ridiculously large and $\varepsilon$ is ridiculously tiny.
 
@@ -90,7 +90,9 @@ Recalling that in our case $a$ is $\pi$ which is relatively small, and quoting t
     d > b \log_{10}(a) + \tilde{E}
 \\]
 
-Notice that the first term (which is obviously the dominant) is just the number of digits in base 10 of $a^b$, which is interesting.
+All jokes aside, we are dealing here with numbers that taking their $\log\circ \log$ may not be negligible, that's why this is so hard in the first place. But ignoring that number is truly ok in this case since $a=\pi$ is first of all, a constant in our case, and secondly it is actually very small.
+
+Now, notice that the first term (which is obviously the dominant one) is just the number of digits in base 10 of $a^b$, which is interesting.
 
 So, to summarize, we discovered that in order for $a^{b-\varepsilon}$ to be within $10^{-\tilde{E}}$ of $a^b$, we need to take the $(b \log_{10}(a) + \tilde{E})$ most significant digits of $b$.
 
@@ -98,13 +100,13 @@ The acute reader would notice that this was not what we originally set out to fi
 
 Using our formula for $a=\pi$, and $b=\alpha$, we discovered that we need to know the first $d_\alpha \coloneqq (\alpha \log_{10}(\pi) + \tilde{E})$ digits of $\alpha$.
 
-But knowing the first $d_\alpha$ is equivalent to calculating $\pi^{(\pi^{\pi})}$ to an approximation of $\tilde{E}=d_\alpha$ digits. That is, we can use our formula recursively, and discover that for that, we need:
+But knowing the first $d_\alpha$ digits of $\alpha$ is equivalent to calculating $\pi^{(\pi^{\pi})}$ to an approximation of $\tilde{E}=d_\alpha$ digits. That is, we can use our formula recursively, and discover that for that, we will need:
 
 $$d_{\pi^{\pi}} = \pi^\pi \log_{10}(\pi) + d_\alpha$$
 
-digits of $\pi^\pi$, which in turn, implies that we need approximatley:
+digits of $\pi^\pi$, which in turn, implies that we will need approximatley:
 
-$$\pi \log_{10}(\pi) + \pi^\pi \log_{10}(\pi) + d_\alpha$$
+$$\pi \log_{10}(\pi) + (\pi^\pi \log_{10}(\pi) + d_\alpha)$$
 
 digits of $\pi$.
 And so, to summarize, in order to know $\pi^{\pi^{\pi^{\pi}}}$ within $\tilde{E}$ digits after the decimal point, we need to calculate:
@@ -125,6 +127,8 @@ This number is so ridiculously large that even if we could store every digit in 
 And now, for the million dollar question - will we ever know if $\pi^{\pi^{\pi^{\pi}}}$ is an integer?
 Well, even though it would cost a lot, 500 petabytes is not a real physical limit in the sense that it is actually possible to use that much memory.
 We are talking about approximately $2^{59}$ digits in binary, and considering that the best known algorithm for computing digits of $\pi$ is asymptotically $O(n\log(n)^2)$, it would take approximately $2^{71}$ operations to compute the digits, which is, again, not a physical limit on computation as we know it.
+Then, we actually need to perform the exponentiation, and I'm not sure what would be the best approach to that.
+
 Well, my humble guess is that we probably won't live to see this specific question answered, at least not in this specific way.
 
 But hey, cheer up, we still got a cool formula that we can try out for $\pi^{\pi^\pi}$:
